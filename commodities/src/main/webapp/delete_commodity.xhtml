@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head>
+    	<title>JSF 2.0 Hello World</title>
+    </h:head>
+    <h:body bgcolor="blue">
+    <h3 align="center">Delete Commodity</h3>
+    	<h:form>
+
+
+<!-- ================================= Fetch Panel ============================================ -->
+    	   
+    	   <p:panel id="Fetch" header="Fetch Utility" style="margin-top:10px;">  
+		        <h:panelGrid columns="2">  
+    	
+	    		   	<p:outputLabel value="Enter Commodity Id:" style="font-weight:bold" />
+	    	   		<p:inputText value="#{commodityBean.id}"/>
+	       	   
+	    	   		<p:commandButton value="Fetch" update= "Display" ajax="false" action="#{commodityBean.fetchCommodity()}" />
+	    	   	
+	    		 </h:panelGrid>
+    	   </p:panel>
+
+<!-- =================================Display Commodity Details============================================ -->
+       	
+       	<p:panel id="Display" header="Commodity Details" style="margin-top:10px;">  
+		        <h:panelGrid columns="2">  
+		        
+		        <h:outputLabel value="Commodity ID:  " style="font-weight:bold" />
+				<h:outputText value="#{commodityBean.id}" />
+	            <h:outputLabel value="Commodity Name: " style="font-weight:bold" />
+				<h:outputText value="#{commodityBean.name}" />
+	            <h:outputLabel value="Commodity Price:   " style="font-weight:bold" />
+				<h:outputText value="#{commodityBean.price}" />
+				<h:outputLabel value="Commodity Type:   " style="font-weight:bold" />
+				<h:outputText value="#{commodityBean.type}" />
+				<h:outputLabel value="Commodity Expire Date:   " style="font-weight:bold" rendered="#{commodityBean.state}"/>
+				<h:outputText value="#{commodityBean.date}" rendered="#{commodityBean.state}"/>  
+			
+	    	   	
+	    	   			<p:commandButton value="Delete"  action="#{commodityBean.deleteCommodity()}" />
+	    		   		<p:commandButton value="BACK" action="main_commodity" />
+	    	   		
+	    		 </h:panelGrid>
+    	   </p:panel>
+    	
+       	
+       	
+    	       	
+       	</h:form>
+<!-- =================================Dialog box============================================ -->
+	<h:panelGrid id="Deleted" columns="2">
+		<h:outputText value="Id: " />
+		<h:outputText value="#{commodityBean.id} Deleted" />
+
+
+	</h:panelGrid>
+	 </h:body>
+</html>

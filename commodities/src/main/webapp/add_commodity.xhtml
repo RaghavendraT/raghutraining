@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Commodity Database System</title>
+</h:head>
+<h:body>
+
+
+	<h3 align="center">Add Commodity</h3>
+	<h:form>
+
+		<!-- =============================== using prime faces, Entry panel ====================================================-->
+
+		<p:panel id="panel" header="New Commodity" style="margin-bottom:10px;">
+		
+			<p:panelGrid id="grid" columns="1">
+
+				<h:outputLabel  value="Name: *" />
+				<p:inputText id="Name" value="#{commodityBean.name}" required="true" label="Name" />
+				<p:message for="Name" />
+
+				<h:outputLabel  value="Price: *" />
+				<p:inputText id="Price" value="#{commodityBean.price}" required="true" label="Price">
+				<f:validateLength minimum="2" />
+				</p:inputText>
+				<p:message for="Price" />
+				
+			
+            <h:outputLabel  value="Type: *" />  
+            <h:selectOneMenu id="Type" value="#{commodityBean.type}" required="true">  
+                <f:selectItem itemLabel="General" itemValue="General" />  
+                <f:selectItems value="#{commodityBean.items}" />  
+                <p:ajax  event="change"   listener="#{commodityBean.status}" update="panel,display"/> 
+                
+                
+            
+            </h:selectOneMenu>  
+
+         	<h:outputText   value="Expiry Date: *"  rendered="#{commodityBean.state}" />
+         	
+         	  <p:calendar value="#{commodityBean.date}" id="popupButtonCal" showOn="button" label="Expiry Date" required="true" rendered="#{commodityBean.state}"/>  
+  <p:message for="popupButtonCal"  />
+				
+          </p:panelGrid>
+
+			<p:commandButton value="Add" update="panel, display" id="Add"
+				action="#{commodityBean.addCommodity()}" process="@form"
+				styleClass="ui-priority-primary" />
+            <p:commandButton value="Back" update="panel" id="Back"
+				action="main_commodity" immediate="true"
+				styleClass="ui-priority-primary" />
+
+		</p:panel>
+
+		<!-- =================================Display Panel============================================ -->
+		<p:panel id="display" header="Information" style="margin-top:40px;">
+			<h:panelGrid columns="2">
+
+				<h:outputText value="Name: " />
+				<h:outputText value="#{commodityBean.name}" />
+
+				<h:outputText value="Price: " />
+				<h:outputText value="#{commodityBean.price}" />
+
+				<h:outputText value="Type: " />
+				<h:outputText value="#{commodityBean.type}" />
+                <h:outputText value="Expiry Date: " rendered="#{commodityBean.state}"/>
+				<h:outputText value="#{commodityBean.date}" rendered="#{commodityBean.state}"/>
+
+			</h:panelGrid>
+
+		</p:panel>
+</h:form>
+</h:body>
+</html>

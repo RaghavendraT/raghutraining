@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>Commodities Database System</title>
+</h:head>
+
+<h:body bgcolor="#E6AABB">
+	<h3 align="center">List of Expire Food</h3>
+	<h:form>
+<p:panel id="panel" header="Fetch Expire Food Commodity" style="margin-bottom:10px;">
+		  <h:panelGrid columns="1">
+	        <p:commandButton value="Fetch"  action="#{commodityBean.listOfExpCommodity()}"  update="listPanel" />
+		  </h:panelGrid>
+		</p:panel>
+		
+     <p:panel id="listPanel">
+		<p:dataTable id="dataTable" 
+			value="#{commodityBean.listOfExpFood}">
+
+			<p:column>
+				<f:facet name="header">  
+				                ID
+				            </f:facet>
+
+				<h:outputText value="#{commodityData.id}" />
+			</p:column>
+
+			<p:column headerText="Name">
+				<h:outputText value="#{commodityData.name}" />
+			</p:column>
+
+			<p:column headerText="Price">
+				<h:outputText value="#{commodityData.price}" />
+			</p:column>
+			
+			<p:column headerText="Type">
+				<h:outputText value="#{commodityData.type}" />
+			</p:column>
+			
+			<p:column headerText="Expiry Date">
+				<h:outputText value="#{commodityData.date}" />
+			</p:column>
+
+
+		</p:dataTable>
+</p:panel>
+		<p:commandButton value="BACK" action="main_commodity" />
+
+
+	</h:form>
+</h:body>
+
+
+
+
+
+</html>
+

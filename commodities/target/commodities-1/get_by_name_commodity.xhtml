@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+</h:head>
+
+<h:body bgcolor="red">
+	<h3 align="center">View Commodity</h3>
+	<h:form>
+
+		<!-- =================================View Panel============================================ -->
+
+		<p:panel id="view" header="Commodity" style="margin-bottom:10px;">
+			<p:messages id="messages" />
+			<h:panelGrid columns="2">
+
+				<p:outputLabel value="Enter Commodity Name:"
+					style="font-weight:bold" />
+				<p:inputText value="#{commodityBean.name}" />
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Display" 
+					action="#{commodityBean.getbyNameCommodity()}" listener="#{commodityBean.status}" />
+			 
+                
+				<p:commandButton value="BACK" action="main_commodity" />
+			</h:panelGrid>
+		</p:panel>
+
+
+	</h:form>
+
+
+	<!-- =================================Dialog box============================================ -->
+
+	<p:dialog id="CommodityDetail" header="Commodity Detail" height="100">
+		<h:panelGrid columns="2">
+		<h:outputText value="Id: " />
+				<h:outputText value="#{commodityBean.id}" />
+			<h:outputText value="Name: " />
+				<h:outputText value="#{commodityBean.name}" />
+
+				<h:outputText value="Price: " />
+				<h:outputText value="#{commodityBean.price}" />
+
+				<h:outputText value="Type: " />
+				<h:outputText value="#{commodityBean.type}" />
+                <h:outputText value="Expiry Date: " rendered="#{commodityBean.state}"/>
+				<h:outputText value="#{commodityBean.date}" rendered="#{commodityBean.state}"/>
+		</h:panelGrid>
+	</p:dialog>
+
+</h:body>
+
+
+</html>
